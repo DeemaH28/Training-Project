@@ -1,0 +1,4 @@
+app\example\app\model\Attachment.class
+app\example\app\model\Invoice.class
+app\example\app\repository\UserRepository.class
+app\example\app\model\Product.class
