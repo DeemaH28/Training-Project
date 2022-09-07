@@ -6,7 +6,6 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "ProductInInvoice")
-// TODO: use camel case for class name
 public class ProductInInvoice {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

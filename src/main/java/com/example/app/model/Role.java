@@ -2,12 +2,13 @@ package com.example.app.model;
 
 public enum Role{
     SupportUser("SupportUser"),
-    Superuser ("Superuser"),
-    AuditorRoles ("AuditorRoles");
+    SuperUser ("SuperUser"),
+    Auditor ("Auditor");
 
     private final String name;
 
     Role(String name) {
+
         this.name = name;
     }
 }

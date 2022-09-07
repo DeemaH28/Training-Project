@@ -13,19 +13,11 @@ import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 //@ComponentScan("com.example.app")
-public class AppApplication extends SpringBootServletInitializer {
+public class AppApplication  {
 
 	public static void main(String[] args) {
 		SpringApplication.run(AppApplication.class, args);
 	}
-	@Bean
-	public RestTemplate restTemplate(RestTemplateBuilder builder) {
-		return builder.build();
-	}
 
-	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-		return builder.sources(AppApplication.class);
-	}
 
 }

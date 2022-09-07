@@ -11,43 +11,43 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/attach")
+@RequestMapping("/attachments")
 public class AttachmentController {
     @Autowired
-   private final AttachmentService attachmentService;
+    public final  AttachmentService attachmentService;
+
 
     public AttachmentController(AttachmentService attachmentService) {
         this.attachmentService = attachmentService;
     }
-
-    @GetMapping("/all")
-    public ResponseEntity<List<Attachment>> getAllAttachments(){
-        List<Attachment> attachments  = attachmentService.findAllAttachments();
+    @GetMapping()
+    public ResponseEntity<List<Attachment>> getAllAttachment(@RequestParam(defaultValue = "0") Integer pageNo, @RequestParam(defaultValue = "10") Integer pageSize){
+        List<Attachment>attachments=attachmentService.findAllAttachments(pageNo, pageSize);
         return new ResponseEntity<>(attachments, HttpStatus.OK);
     }
-
-    @GetMapping("/find/{id}")
-    public ResponseEntity<Attachment> getAllAttachmentById(@PathVariable("id") Integer id) throws AttachmentNotFoundException {
+    @GetMapping("/{id}")
+    public ResponseEntity<Attachment> getAttachmentById(@PathVariable("id") Integer id) throws AttachmentNotFoundException {
         Attachment attachment= attachmentService.findAttachmentById(id);
         return new ResponseEntity<>(attachment, HttpStatus.OK);
     }
 
-    @PostMapping("/add")
+    @PostMapping()
     public ResponseEntity<Attachment> addAttachment(@RequestBody Attachment attachment){
         Attachment newAttachment = attachmentService.addAttachment(attachment);
         return new ResponseEntity<>(newAttachment, HttpStatus.CREATED);
     }
 
-    @PutMapping("/update")
+    @PutMapping()
     public ResponseEntity<Attachment> updateAttachment(@RequestBody Attachment attachment){
         Attachment updateAttachment = attachmentService.updateAttachment(attachment);
         return new ResponseEntity<>(updateAttachment, HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteAttachment(@PathVariable("id") Integer id) throws AttachmentNotFoundException{
         attachmentService.deleteAttachmentById(id);
         return new ResponseEntity<>( HttpStatus.OK);
     }
+
 
 }

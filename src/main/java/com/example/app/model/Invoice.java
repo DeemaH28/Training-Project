@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Table (name="Invoice")
-// TODO: Class name start with capital letter
+
 public class Invoice {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +32,7 @@ public class Invoice {
     private Float TotalCost ;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "userId", referencedColumnName = "id",nullable=true)
-    private Users users;
+    private User user;
     @OneToMany (mappedBy = "invoice",cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private List<Attachment>attachments=new ArrayList<>();
 
@@ -49,14 +49,14 @@ public class Invoice {
     public Invoice() {
     }
 
-    public Invoice(int id, int invoiceNum, LocalDate invoiceDate, Float subTotalCost, Float tax, Float totalCost, Users users, List<Attachment> attachments, List<ProductInInvoice> productInInvoices) {
+    public Invoice(int id, int invoiceNum, LocalDate invoiceDate, Float subTotalCost, Float tax, Float totalCost, User user, List<Attachment> attachments, List<ProductInInvoice> productInInvoices) {
         this.id = id;
         this.invoiceNum = invoiceNum;
         this.invoiceDate = invoiceDate;
         this.subTotalCost = subTotalCost;
         this.tax = tax;
         TotalCost = totalCost;
-        this.users = users;
+        this.user = user;
         this.attachments = attachments;
         this.productInInvoices = productInInvoices;
     }
@@ -109,12 +109,12 @@ public class Invoice {
         TotalCost = totalCost;
     }
 
-    public Users getUsers() {
-        return users;
+    public User getUsers() {
+        return user;
     }
 
-    public void setUsers(Users users) {
-        this.users = users;
+    public void setUsers(User user) {
+        this.user = user;
     }
 
     public List<Attachment> getAttachments() {
@@ -142,7 +142,7 @@ public class Invoice {
                 ", subTotalCost=" + subTotalCost +
                 ", tax=" + tax +
                 ", TotalCost=" + TotalCost +
-                ", users=" + users +
+                ", user=" + user +
                 ", attachments=" + attachments +
                 ", productInInvoices=" + productInInvoices +
                 '}';
